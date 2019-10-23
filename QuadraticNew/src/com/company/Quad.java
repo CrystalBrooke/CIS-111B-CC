@@ -1,0 +1,152 @@
+package com.company;
+
+        import java.util.ArrayList;                                             //To use ArrayList class
+        import org.apache.commons.math3.complex.Complex;                        //To handle complex numbers
+        import org.apache.commons.math3.analysis.solvers.LaguerreSolver;        //To handle complex numbers?
+
+public class Quad implements Comparable<Quad>
+{
+    //Fields
+    private double a;           //To hold the value of "a" for equation
+    private double b;           //To hold the value of "b" for equation
+    private double c;           //To hold the value of "b" for equation
+
+    //Default Constructor
+    public Quad()
+    {
+        a = 1.0;
+        b = 1.0;
+        c = 1.0;
+    }
+
+    //Constructor to accept arguments
+    public Quad(double a, double b, double c)
+    {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+    //methods
+    //set a, b, and c
+    public void setA(double a)
+    {
+        this.a = a;
+    }
+
+    public void setB(double b)
+    {
+        this.b = b;
+    }
+
+    public void setC(double c)
+    {
+        this.c = c;
+    }
+
+    //get a, b, and c
+    public double getA()
+    {
+        return a;
+    }
+
+    public double getB()
+    {
+        return b;
+    }
+
+    public double getC()
+    {
+        return c;
+    }
+
+    /**
+     * The compareTo string will compare the A values of two Quad classes to determine if one is larger than the other.
+     * @param otherQuad
+     * @return int comparison of the two A values
+     */
+    @Override
+    public int compareTo(Quad otherQuad)
+    {
+        return this.getA().compareTo(otherQuad.getA());
+    }
+
+    /**
+     * The toString method is designed to print the polynomial that holds the values for a, b, and c as a string.
+     * @return String that reads out y=ax^2+bx+c with values for variables substituted for "a" "b" "c"
+     */
+    public String toString()
+    {
+        return "The quadratic equation is y = " + a + "x^2 + " + b + "x + " + c;
+    }
+
+    /**
+     * The realOrComplex method determines if the equation has real numbers as roots or complex numbers as roots.
+     * @return String "complex roots" or "real roots"
+     */
+    public boolean hasRealRoots()
+    {
+        if(isNegative() == true)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    /**
+     * The isNegative method tests the discriminant and returns true if negative, false if positive.
+     * @return discIsNegative true or fase.
+     */
+    public boolean isNegative()
+    {
+        boolean discIsNegative;           //To hold true or false if the discriminant is negative
+        //If statement to dertermine if discriminant is negative
+        if (Math.pow(b, 2) - (4 * a * c) < 0)
+        {
+            discIsNegative = true;
+        }
+        else
+        {
+            discIsNegative = false;
+        }
+        return discIsNegative;
+    }
+    //Value of first derivative - formula 2ax+b
+    public double firstDeriv(double x)
+    {
+        double deriv;
+
+        deriv = 2 * a * x + b;
+        return deriv;
+    }
+
+    /**
+     * The computeRoots method finds the two solutions for the quadratic equation.
+     * @return roots An ArrayList that holds both possible answers for the equation.
+     */
+    public ArrayList<Double> computeRoots()
+    {
+        ArrayList<Double> roots = new ArrayList<Double>();
+
+        if (a != 0)
+        {
+            if(isNegative() == true)
+            {
+                roots.add(0.0);
+                roots.add(0.0);
+            }
+            else
+            {
+                roots.add(((-1 * b + Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / 2 * a)/100);
+                roots.add(((-1 * b - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / 2 * a)/100);
+            }
+        }
+        else
+        {
+            System.out.println("A cannot be 0. Enter a new value for a.");
+        }
+        return roots;
+    }
+}
