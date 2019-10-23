@@ -1,0 +1,45 @@
+public class QuadraticTester
+{
+    public static void main(String[] args)
+    {
+        Quad quadratic1 = new Quad();
+
+        //Call Methods to test Quad Class
+        quadratic1.getA();
+
+        quadratic1.getB();
+
+        quadratic1.getC();
+
+        String output = quadratic1.toString();
+            System.out.println(output);
+
+        quadratic1.isNegative();
+
+        quadratic1.hasRealRoots();
+
+        quadratic1.firstDeriv();
+
+        quadratic1.computeRoots();
+
+        Quad quadratic2 = new Quad(0, -10 , 5);
+        getA()
+        getB()
+        getC()
+        toString()
+        isNegative()
+        hasRealRoots()
+        firstDeriv()
+        computeRoots()
+
+        Quad quadratic3 = newQuad(-5, -15, 1);
+        getA()
+        getB()
+        getC()
+        toString()
+        isNegative()
+        hasRealRoots()
+        firstDeriv()
+        computeRoots()
+    }
+}
